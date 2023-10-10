@@ -11,8 +11,23 @@ import Foundation
  
  
  */
-
-
+struct Band{
+    var genre : String
+    var members : Int
+    var isActive : Bool
+    
+    func pumpUpCrowd() -> String {
+           if isActive {
+               return "Are you ready to ROCK?"
+           } else {
+               return "..."
+           }
+       }
+    
+    mutating func changeGenre(newGenre: String) {
+        self.genre = newGenre
+    }
+}
 /*:
  Under the struct definition, create an instance of Band called maroon5 that takes the arguments:
 
@@ -22,7 +37,7 @@ import Foundation
  
  
  */
-
+let maroon5 = Band(genre: "pop", members: 5, isActive: true)
 
 
 /*:
@@ -47,12 +62,15 @@ import Foundation
  isActive: true.
  
  */
-
+let fooFighters = Band(genre: "rock", members: 6, isActive: true)
 
 /*:
  Under the declaration of journey, create a variable named bandsNewGenre call .changeGenre() on journey with the argument newGenre: "rock".
 
  Then print out bandsNewGenre to see the changed value.
  */
+var journey = Band(genre: "Classic Rock", members: 5, isActive: true)
+journey.changeGenre(newGenre: "Rock")
 
+print(journey.genre)
 //: [Previous](@previous)                                                                                           [Next](@next)

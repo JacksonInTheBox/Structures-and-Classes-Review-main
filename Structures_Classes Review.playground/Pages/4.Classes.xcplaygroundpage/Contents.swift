@@ -8,8 +8,49 @@ import Foundation
 * accountHolder (String)
 * balance (Double)
 */
-
-
+class BankAccount {
+    var accountNumber: String
+    var accountHolder: String
+    var balance: Double {
+        didSet {
+            print("New balance: \(formattedBalance)")
+        }
+    }
+    
+    var formattedBalance: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter.string(from: NSNumber(value: balance)) ?? "$0.00"
+    }
+    
+    init(accountNumber: String, accountHolder: String, balance: Double) {
+        self.accountNumber = accountNumber
+        self.accountHolder = accountHolder
+        self.balance = balance
+    }
+    
+    func deposit(amount: Double) {
+        if amount > 0 {
+            balance += amount
+            print("Deposited \(formattedAmount(amount))")
+        }
+    }
+    
+    func withdraw(amount: Double) {
+        if amount > 0 && amount <= balance {
+            balance -= amount
+            print("Withdrawn \(formattedAmount(amount))")
+        } else {
+            print("Withdrawal failed. Insufficient balance.")
+        }
+    }
+    
+    private func formattedAmount(_ amount: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter.string(from: NSNumber(value: amount)) ?? "$0.00"
+    }
+}
 
 
 
